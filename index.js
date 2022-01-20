@@ -11,21 +11,22 @@ const app = express();
 //Configurar cors
 app.use(cors());
 
+//Lectura y parseo body
+app.use(express.json());
+
 
 //Base de datos
-
 dbConnection();
 
 
 //Rutas
-app.get('/', (req, res) => {
 
-    res.status(200).json({
-        ok: true,
-        mgs: 'Hola mundo'
-    })
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
 
-});
+
+
+
 
 //password => L08MVURky5g9HzIO
 //User => mean_user
